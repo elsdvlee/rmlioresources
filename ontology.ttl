@@ -4,7 +4,7 @@
 @prefix owl: 			<http://www.w3.org/2002/07/owl#> .
 @prefix foaf: 			<http://xmlns.com/foaf/0.1/> .
 @prefix ql: 			<http://semweb.mmlab.be/ns/ql#> .
-@prefix rml: 			<http://semweb.mmlab.be/ns/rml#> .
+@prefix rmls: 			<http://semweb.mmlab.be/ns/rml#> .
 @prefix rmlt: 			<http://semweb.mmlab.be/ns/rml-target#> .
 @prefix rr: 			<http://www.w3.org/ns/r2rml#> .
 @prefix rdf: 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -16,7 +16,7 @@
 
 <>  rdf:type			owl:Ontology ;
     rdf:type 			<http://purl.org/vocommons/voaf#Vocabulary> ;
-    dcterms:title 		"RML: Generic Mapping Language for RDF"@en ;
+    dcterms:title 		"rmls: Generic Mapping Language for RDF"@en ;
     rdf:type 			<http://purl.org/vocommons/voaf#Vocabulary> ;
     dcterms:issued 		"2013-07-01"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified 		"2014-09-10"^^<http://www.w3.org/2001/XMLSchema#date> ;
@@ -38,15 +38,15 @@
 
 ###  http://semweb.mmlab.be/ns/rml#logicalSource
 
-rml:logicalSource rdf:type owl:ObjectProperty ;
+rmls:logicalSource rdf:type owl:ObjectProperty ;
     rdfs:label    "logical source" ;
     rdfs:comment  "Represents the logical source to be mapped. This can be a pointer to any dataset."@en ;
-    rdfs:range    rml:LogicalSource;
+    rdfs:range    rmls:LogicalSource;
     rdfs:domain   rr:TriplesMap .
                
 ###  http://semweb.mmlab.be/ns/rml#logicalTarget
 
-rml:logicalTarget rdf:type owl:ObjectProperty ;
+rmls:logicalTarget rdf:type owl:ObjectProperty ;
     rdfs:label    "logical target" ;
     rdfs:comment  "Represents the logical target to where triples are exported to. This can be a pointer to any dataset."@en ;
     rdfs:range    rmlt:LogicalTarget;
@@ -54,11 +54,11 @@ rml:logicalTarget rdf:type owl:ObjectProperty ;
 
 ###  http://semweb.mmlab.be/ns/rml#referenceFormulation
 
-rml:referenceFormulation rdf:type owl:ObjectProperty ;
+rmls:referenceFormulation rdf:type owl:ObjectProperty ;
     rdfs:comment "The reference formulation used to refer to extracts of the source data. "@en ;
     rdfs:label   "reference formulation" ;
-    rdfs:domain  rml:LogicalSource;
-    rdfs:range   rml:ReferenceFormulation .
+    rdfs:domain  rmls:LogicalSource;
+    rdfs:range   rmls:ReferenceFormulation .
 
 
 
@@ -71,21 +71,21 @@ rml:referenceFormulation rdf:type owl:ObjectProperty ;
 
 ###  http://semweb.mmlab.be/ns/rml#iterator
 
-rml:iterator rdf:type owl:DatatypeProperty ;
+rmls:iterator rdf:type owl:DatatypeProperty ;
     rdfs:label   "iterator" ;
     rdfs:comment "an expression qualified according to the reference formulation specified for pointing to an extract of the source data. "@en ;
-    rdfs:domain  rml:LogicalSource;
+    rdfs:domain  rmls:LogicalSource;
     rdfs:range   xsd:string .
 
 
 ###  http://www.w3.org/ns/r2rml#column - extended in RML
 
-rr:column rdfs:subPropertyOf rml:reference .
+rr:column rdfs:subPropertyOf rmls:reference .
 
 
 ###  http://semweb.mmlab.be/ns/rml#reference
 
-rml:reference rdf:type owl:DatatypeProperty ;
+rmls:reference rdf:type owl:DatatypeProperty ;
     rdfs:label   "reference" ;
     rdfs:comment "A valid expression that selects values from the source data. The reference should confront to the syntax rules/grammar of the specified Reference Formulation. "@en ;
     rdfs:domain  rr:TermMap;
@@ -94,41 +94,41 @@ rml:reference rdf:type owl:DatatypeProperty ;
 
 ###  http://semweb.mmlab.be/ns/rml#version
 
-rml:version rdf:type owl:DatatypeProperty ;
+rmls:version rdf:type owl:DatatypeProperty ;
     rdfs:label   "version" ;
     rdfs:comment "It defines the version of the reference Formulation used. "@en ;
-    rdfs:domain  rml:LogicalSource;
+    rdfs:domain  rmls:LogicalSource;
     rdfs:range   xsd:string .
 
 
 ###  http://semweb.mmlab.be/ns/rml#sqlVersion - extended in RML
 
-rr:sqlVersion rdfs:subPropertyOf rml:version .
+rr:sqlVersion rdfs:subPropertyOf rmls:version .
 
 
 ###  http://semweb.mmlab.be/ns/rml#source
 
-rml:source rdf:type rdf:Property ;
+rmls:source rdf:type rdf:Property ;
     rdfs:label   "source" ;
     rdfs:comment "qualified name of the source data."@en ;
-    rdfs:domain  rml:LogicalSource .
+    rdfs:domain  rmls:LogicalSource .
 
 
 ###  http://www.w3.org/ns/r2rml#tableName - extended in RML
 
-rr:tableName rdfs:subPropertyOf rml:source .
+rr:tableName rdfs:subPropertyOf rmls:source .
 
 
 ###  http://mmlab.be/rml#query
 
-rml:query rdf:type owl:DatatypeProperty ;
+rmls:query rdf:type owl:DatatypeProperty ;
     rdfs:comment "A valid query."@en ;
-    rdfs:domain  rml:LogicalSource .
+    rdfs:domain  rmls:LogicalSource .
 
 
 ###  http://www.w3.org/ns/r2rml#sqlQuery - extended in RML
 
-rr:sqlQuery rdfs:subPropertyOf rml:query .
+rr:sqlQuery rdfs:subPropertyOf rmls:query .
 
 
 ###  http://www.w3.org/ns/r2rml#object
@@ -138,7 +138,7 @@ rr:object rdfs:domain [
     owl:intersectionOf ( rr:ObjectMap
     [ rdf:type owl:Restriction ;
       #extended in RML
-      owl:onProperty rml:reference ;
+      owl:onProperty rmls:reference ;
       owl:maxQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
       owl:onDataRange xsd:string ] )
     ] .
@@ -151,7 +151,7 @@ rr:predicate rdfs:domain [
     owl:intersectionOf ( rr:PredicateMap
         [ rdf:type owl:Restriction ;
           #extended in RML
-          owl:onProperty rml:reference ;
+          owl:onProperty rmls:reference ;
           owl:maxQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
           owl:onDataRange xsd:string
         ] )
@@ -164,7 +164,7 @@ rr:subject rdfs:domain [
     owl:intersectionOf ( rr:SubjectMap
         [ rdf:type owl:Restriction ;
           #extended in RML
-          owl:onProperty rml:reference ;
+          owl:onProperty rmls:reference ;
           owl:maxQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
           owl:onDataRange xsd:string
         ] )
@@ -180,11 +180,11 @@ rr:subject rdfs:domain [
 
 ###  http://semweb.mmlab.be/ns/rml#TriplesMap
 
-rml:TriplesMap rdfs:subClassOf owl:Thing,
+rmls:TriplesMap rdfs:subClassOf owl:Thing,
   [
     rdf:type     owl:Restriction ;
-    owl:onProperty rml:logicalSource ;
-    owl:onClass  rml:LogicalSource ;
+    owl:onProperty rmls:logicalSource ;
+    owl:onClass  rmls:LogicalSource ;
     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
   ],
   [ rdf:type owl:Restriction ;
@@ -197,35 +197,35 @@ rml:TriplesMap rdfs:subClassOf owl:Thing,
 
 ###  http://www.w3.org/ns/r2rml#TriplesMap - extended in RML
 
-rr:TriplesMap rdfs:subClassOf rml:TriplesMap .
+rr:TriplesMap rdfs:subClassOf rmls:TriplesMap .
    
 
 ###  http://semweb.mmlab.be/ns/rml#BaseSource
 
-rml:BaseSource rdf:type owl:Class ;
+rmls:BaseSource rdf:type owl:Class ;
     rdfs:label   "Base Source" ;
     rdfs:comment "Base Source" ;
-    rdfs:subClassOf rml:LogicalSource ;
+    rdfs:subClassOf rmls:LogicalSource ;
     rdfs:comment "Represents a base source."@en  .
 
 
 ###  http://semweb.mmlab.be/ns/rml#LogicalSource
 
-rml:LogicalSource rdf:type owl:Class ;
+rmls:LogicalSource rdf:type owl:Class ;
     rdfs:subClassOf owl:Thing,
       [
         rdf:type     owl:Restriction ;
-        owl:onProperty rml:referenceFormulation ;
+        owl:onProperty rmls:referenceFormulation ;
         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
       ],
       [
         rdf:type     owl:Restriction ;
-        owl:onProperty rml:iterator ;
+        owl:onProperty rmls:iterator ;
         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger
       ],
       [
         rdf:type     owl:Restriction ;
-        owl:onProperty rml:source ;
+        owl:onProperty rmls:source ;
         owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
       ];
     rdfs:label   "Logical Source" ;
@@ -235,12 +235,12 @@ rml:LogicalSource rdf:type owl:Class ;
 
 ###  http://www.w3.org/ns/r2rml#LogicalTable - extended in RML
 
-rr:LogicalTable rdfs:subClassOf rml:LogicalSource .
+rr:LogicalTable rdfs:subClassOf rmls:LogicalSource .
 
 
 ###  http://semweb.mmlab.be/ns/rml#ReferenceFormulation
 
-rml:ReferenceFormulation rdf:type owl:Class ;
+rmls:ReferenceFormulation rdf:type owl:Class ;
     rdfs:label   "Reference Formulation" ;
     rdfs:comment "Represents a Reference Formulation."@en .
 
@@ -255,7 +255,7 @@ rml:ReferenceFormulation rdf:type owl:Class ;
 
 ###  http://semweb.mmlab.be/ns/ql/CSV
 
-ql:CSV rdf:type owl:NamedIndividual, rml:ReferenceFormulation ;
+ql:CSV rdf:type owl:NamedIndividual, rmls:ReferenceFormulation ;
     rdfs:label   "CSV" ; 
     rdfs:comment "Denotes that the CSV file's column names are used for referring to extracts of CSV resources."@en ;
     ql:specification <http://tools.ietf.org/html/rfc4180>.
@@ -263,20 +263,20 @@ ql:CSV rdf:type owl:NamedIndividual, rml:ReferenceFormulation ;
 
 ###  http://semweb.mmlab.be/ns/ql/XPath
 
-ql:XPath rdf:type owl:NamedIndividual, rml:ReferenceFormulation  ;
+ql:XPath rdf:type owl:NamedIndividual, rmls:ReferenceFormulation  ;
     rdfs:label   "XPath" ; 
     rdfs:comment "Denotes the XPath reference formulation, used for referring to extracts of XML sources."@en ;
     ql:specification <http://www.w3.org/TR/xpath20/> ;
-    rml:version "2.0".
+    rmls:version "2.0".
 
 
 ###  http://semweb.mmlab.be/ns/ql/JSONPath
 
-ql:JSONPath rdf:type owl:NamedIndividual, rml:ReferenceFormulation  ; 
+ql:JSONPath rdf:type owl:NamedIndividual, rmls:ReferenceFormulation  ; 
     rdfs:label   "JSONPath" ;
     rdfs:comment "Denotes the JSONPath reference formulation, used for referring to extracts of JSON sources."@en .
 
-ql:CSS3 rdf:type owl:NamedIndividual, rml:ReferenceFormulation  ;
+ql:CSS3 rdf:type owl:NamedIndividual, rmls:ReferenceFormulation  ;
     rdfs:label   "Selectors Level 3" ;
     rdfs:comment "Denotes the selectors, namely the patterns that match against elements in a tree and are used in CSS and other thechnolgies to select elements in HTML or XML documents." ;
     ql:specification <http://www.w3.org/TR/css3-selectors/> .
