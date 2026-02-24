@@ -1,0 +1,196 @@
+@prefix : <https://w3id.org/imec/rml/ns/extensions#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://w3id.org/imec/rml/ns/extensions#> .
+
+<https://w3id.org/imec/rml/ns/extensions#> rdf:type owl:Ontology ;
+                                            owl:versionIRI <https://w3id.org/imec/rml/ns/extensions/20250113/> ;
+                                            owl:imports <https://kg-construct.github.io/rml-core/ontology/documentation/ontology.ttl> ,
+                                                        <https://kg-construct.github.io/rml-io/ontology/documentation/ontology.ttl> ,
+                                                        <https://www.w3.org/TR/HTTP-in-RDF10/> ;
+                                            <http://purl.org/dc/terms/contributor> "Ben De Meester" ,
+                                                                                   "Els de Vleeschauwer" ;
+                                            <http://purl.org/dc/terms/created> "2024-12-02" ;
+                                            <http://purl.org/dc/terms/description> "Vocabulary used in RML extensions"@en ;
+                                            <http://purl.org/dc/terms/license> <http://purl.org/NET/rdflicense/cc-by4.0> ;
+                                            <http://purl.org/dc/terms/modified> "2025-01-13" ;
+                                            <http://purl.org/dc/terms/publisher> <https://w3id.org/imec/rml/> ;
+                                            <http://purl.org/dc/terms/title> "RML Extensions"@en ;
+                                            <http://purl.org/ontology/bibo/status> "unofficial" ;
+                                            <http://purl.org/vocab/vann/preferredNamespacePrefix> "rmle" ;
+                                            <http://purl.org/vocab/vann/preferredNamespaceUri> "https://w3id.org/imec/rml/ns/extensions#" ;
+                                            owl:versionInfo "0.2.0" .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/imec/rml/ns/extensions#authOidcIssuer
+:authOidcIssuer rdf:type owl:ObjectProperty ;
+                rdfs:domain :CssClientCredentialsAuthentication ;
+                rdfs:range rdfs:Resource ;
+                rdfs:comment "The OpenID Connect issuer for the authentication." ;
+                rdfs:isDefinedBy <https://w3id.org/imec/rml/specs/access/httprequest> ;
+                rdfs:label "authentication OIDC issuer"@en .
+
+
+###  https://w3id.org/imec/rml/ns/extensions#authWebId
+:authWebId rdf:type owl:ObjectProperty ;
+           rdfs:domain :CssClientCredentialsAuthentication ;
+           rdfs:range rdfs:Resource ;
+           rdfs:comment "The webID for the authentication." ;
+           rdfs:isDefinedBy <https://w3id.org/imec/rml/specs/access/httprequest> ;
+           rdfs:label "authentication webID"@en .
+
+
+###  https://w3id.org/imec/rml/ns/extensions#logicalTargetMap
+:logicalTargetMap rdf:type owl:ObjectProperty ;
+                  rdfs:domain <http://w3id.org/rml/TermMap> ;
+                  rdfs:range :LogicalTargetMap ;
+                  rdfs:comment "The logical target map element that generates the logical target identifier." ;
+                  rdfs:isDefinedBy <https://w3id.org/imec/rml/specs/target/dynamictarget> ;
+                  rdfs:label "logical target map"@en .
+
+
+###  https://w3id.org/imec/rml/ns/extensions#userAuthentication
+:userAuthentication rdf:type owl:ObjectProperty ;
+                    rdfs:domain :HttpRequest ;
+                    rdfs:range :UserAuthentication ;
+                    rdfs:comment "The information needed for the authentication of a user." ;
+                    rdfs:isDefinedBy <https://w3id.org/imec/rml/specs/access/httprequest> ;
+                    rdfs:label "user authentication"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/imec/rml/ns/extensions#acceptHeader
+:acceptHeader rdf:type owl:DatatypeProperty ;
+              rdfs:domain :HttpRequest ;
+              rdfs:range xsd:string ;
+              rdfs:comment "The value for the Accept header." ;
+              rdfs:isDefinedBy <https://w3id.org/imec/rml/specs/access/httprequest> ;
+              rdfs:label "accept header"@en .
+
+
+###  https://w3id.org/imec/rml/ns/extensions#authEmail
+:authEmail rdf:type owl:DatatypeProperty ;
+           rdfs:domain :CssClientCredentialsAuthentication ;
+           rdfs:range xsd:string ;
+           rdfs:comment "The email for the authentication." ;
+           rdfs:isDefinedBy <https://w3id.org/imec/rml/specs/access/httprequest> ;
+           rdfs:label "authentication email"@en .
+
+
+###  https://w3id.org/imec/rml/ns/extensions#authPassword
+:authPassword rdf:type owl:DatatypeProperty ;
+              rdfs:domain :CssClientCredentialsAuthentication ;
+              rdfs:range xsd:string ;
+              rdfs:comment "The password for the authentication." ;
+              rdfs:isDefinedBy <https://w3id.org/imec/rml/specs/access/httprequest> ;
+              rdfs:label "authentication password"@en .
+
+
+###  https://w3id.org/imec/rml/ns/extensions#contentTypeHeader
+:contentTypeHeader rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :HttpRequest ;
+                   rdfs:range xsd:string ;
+                   rdfs:comment "The value for the Content-Type header." ;
+                   rdfs:isDefinedBy <https://w3id.org/imec/rml/specs/access/httprequest> ;
+                   rdfs:label "content-type header"@en .
+
+
+###  https://w3id.org/imec/rml/ns/extensions#linkRelation
+:linkRelation rdf:type owl:DatatypeProperty ;
+              rdfs:domain :LinkedHttpRequest ;
+              rdfs:range xsd:string ;
+              rdfs:comment "The relation in the Link header." ;
+              rdfs:isDefinedBy <https://w3id.org/imec/rml/specs/access/httprequest> ;
+              rdfs:label "link relation"@en .
+
+
+###  https://w3id.org/imec/rml/ns/extensions#linkingAbsoluteURI
+:linkingAbsoluteURI rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :LinkedHttpRequest ;
+                    rdfs:range xsd:string ;
+                    rdfs:comment "The absolute URI of the linking web resource." ;
+                    rdfs:isDefinedBy <https://w3id.org/imec/rml/specs/access/httprequest> ;
+                    rdfs:label "linking absolute URI"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.w3.org/2000/01/rdf-schema#Resource
+rdfs:Resource rdf:type owl:Class .
+
+
+###  https://w3id.org/imec/rml/ns/extensions#CssClientCredentialsAuthentication
+:CssClientCredentialsAuthentication rdf:type owl:Class ;
+                                    rdfs:subClassOf :UserAuthentication ;
+                                    rdfs:comment "Represents a resource holding information needed for authentication using client credentials on the Solid Community Server." ;
+                                    rdfs:isDefinedBy <https://w3id.org/imec/rml/specs/access/httprequest> ;
+                                    rdfs:label "CSS Client Credentials Authentication Info"@en .
+
+
+###  https://w3id.org/imec/rml/ns/extensions#DirectHttpRequest
+:DirectHttpRequest rdf:type owl:Class ;
+                   rdfs:subClassOf :HttpRequest ;
+                   rdfs:comment "Represents a direct HTTP request access description." ;
+                   rdfs:isDefinedBy <https://w3id.org/imec/rml/specs/access/httprequest> ;
+                   rdfs:label "Direct HTTP Request"@en .
+
+
+###  https://w3id.org/imec/rml/ns/extensions#HttpRequest
+:HttpRequest rdf:type owl:Class ;
+             rdfs:subClassOf <https://www.w3.org/TR/HTTP-in-RDF10/HttpRequest> ;
+             rdfs:comment "Represents an abstract HTTP request access description." ;
+             rdfs:isDefinedBy <https://w3id.org/imec/rml/specs/access/httprequest> ;
+             rdfs:label "HTTP Request"@en .
+
+
+###  https://w3id.org/imec/rml/ns/extensions#LinkedHttpRequest
+:LinkedHttpRequest rdf:type owl:Class ;
+                   rdfs:subClassOf :HttpRequest ;
+                   rdfs:comment "Represents a linked HTTP request access description." ;
+                   rdfs:isDefinedBy <https://w3id.org/imec/rml/specs/access/httprequest> ;
+                   rdfs:label "Linked HTTP Request"@en .
+
+
+###  https://w3id.org/imec/rml/ns/extensions#LogicalTargetMap
+:LogicalTargetMap rdf:type owl:Class ;
+                  rdfs:subClassOf <http://w3id.org/rml/ExpressionMap> ;
+                  rdfs:comment "Represents a logical target map." ;
+                  rdfs:isDefinedBy <https://w3id.org/imec/rml/specs/target/dynamictarget> ;
+                  rdfs:label "Logical Target Map"@en .
+
+
+###  https://w3id.org/imec/rml/ns/extensions#UserAuthentication
+:UserAuthentication rdf:type owl:Class ;
+                    rdfs:comment "Represents a resource holding information needed for user authentication." ;
+                    rdfs:isDefinedBy <https://w3id.org/imec/rml/specs/access/httprequest> ;
+                    rdfs:label "Authentication Info"@en .
+
+
+###  https://www.w3.org/TR/HTTP-in-RDF10/HttpRequest
+<https://www.w3.org/TR/HTTP-in-RDF10/HttpRequest> rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://w3id.org/imec/rml/ns/extensions#ThisMapping
+:ThisMapping rdf:type owl:NamedIndividual ,
+                      <http://w3id.org/rml/LogicalTarget> ;
+             rdfs:comment "Represents a logical target that adds the RDF triples to the mapping used for their generation." ;
+             rdfs:isDefinedBy <https://w3id.org/imec/rml/specs/target/dynamictarget> ;
+             rdfs:label "This Mapping"@en .
+
+
+###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/
